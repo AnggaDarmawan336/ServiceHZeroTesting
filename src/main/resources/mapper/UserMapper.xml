@@ -1,0 +1,13 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hand.infra.mapper.UserMapper">
+    <resultMap id="userMap" type="com.hand.domain.entity.User">
+        <id column="ID" jdbcType="INTEGER" property="id"/>
+        <result column="EMPLOYEE_NAME" jdbcType="VARCHAR" property="employeeName"/>
+        <result column="EMPLOYEE_NUMBER" jdbcType="VARCHAR" property="employeeName"/>
+        <result column="EMAIL" jdbcType="VARCHAR" property="email"/>
+    </resultMap>
+
+    <select id="selectUser" resultMap="userMap">
+        SELECT * FROM todo_user
+    </select>
+</mapper>

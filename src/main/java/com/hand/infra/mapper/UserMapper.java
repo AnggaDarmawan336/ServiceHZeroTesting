@@ -1,0 +1,11 @@
+package com.hand.infra.mapper;
+
+import com.hand.domain.entity.Task;
+import com.hand.domain.entity.User;
+import io.choerodon.mybatis.common.BaseMapper;
+
+import java.util.List;
+
+public interface UserMapper extends BaseMapper<User> {
+    List<User> selectUser(User params);
+}

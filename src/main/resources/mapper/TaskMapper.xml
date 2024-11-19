@@ -1,0 +1,15 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hand.infra.mapper.TaskMapper">
+    <resultMap id="taskMap" type="com.hand.domain.entity.Task">
+        <id column="ID" jdbcType="INTEGER" property="taskId"/>
+        <result column="EMPLOYEE_ID" jdbcType="INTEGER" property="employeeId"/>
+        <result column="STATE" jdbcType="VARCHAR" property="state"/>
+        <result column="TASK_NUMBER" jdbcType="VARCHAR" property="taskNumber"/>
+        <result column="TASK_DESCRIPTION" jdbcType="VARCHAR" property="taskDescription"/>
+        <result column="TENANT_ID" jdbcType="INTEGER" property="tenantId"/>
+    </resultMap>
+
+    <select id="selectTask" resultMap="taskMap">
+        SELECT * FROM todo_task
+    </select>
+</mapper>
