@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class TaskRepositoryImpl extends BaseRepositoryImpl<Task> implements TaskRepository {

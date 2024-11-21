@@ -45,12 +45,70 @@ public class Task extends AuditDomain {
     @ApiModelProperty("员工姓名")
     private String employeeName;
 
+    private String email;
+
     public @NotNull(message = "error.employeeId.null") Long getEmployeeId() {
         return employeeId;
     }
 
     public void setEmployeeId(@NotNull(message = "error.employeeId.null") Long employeeId) {
         this.employeeId = employeeId;
+    }
+
+    public @NotNull Long getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(@NotNull Long tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    public String getEmployeeNumber() {
+        return employeeNumber;
+    }
+
+    public void setEmployeeNumber(String employeeNumber) {
+        this.employeeNumber = employeeNumber;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
+    public @Length(max = 240) String getTaskDescription() {
+        return taskDescription;
+    }
+
+    public void setTaskDescription(@Length(max = 240) String taskDescription) {
+        this.taskDescription = taskDescription;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTaskNumber() {

@@ -28,11 +28,6 @@
             <artifactId>hzero-boot-message</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.hzero</groupId>
-            <artifactId>hzero-scheduler-saas</artifactId>
-        </dependency>
-
         <!-- 依赖服务列表 -->
 
         <!-- 依赖组件列表 -->

@@ -6,6 +6,7 @@ import io.choerodon.mybatis.pagehelper.domain.PageRequest;
 import org.hzero.mybatis.base.BaseRepository;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TaskRepository extends BaseRepository<Task> {
     Page<Task> pageTask(Task task, PageRequest pageRequest);
