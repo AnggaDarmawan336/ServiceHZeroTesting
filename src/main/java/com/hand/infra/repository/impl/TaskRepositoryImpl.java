@@ -6,6 +6,7 @@ import com.hand.infra.mapper.TaskMapper;
 import io.choerodon.core.domain.Page;
 import io.choerodon.mybatis.pagehelper.PageHelper;
 import io.choerodon.mybatis.pagehelper.domain.PageRequest;
+import org.hzero.boot.message.MessageClient;
 import org.hzero.mybatis.base.impl.BaseRepositoryImpl;
 import org.hzero.mybatis.common.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ import java.util.List;
 public class TaskRepositoryImpl extends BaseRepositoryImpl<Task> implements TaskRepository {
     @Autowired
     private TaskMapper taskMapper;
+
+    @Autowired
+    private MessageClient messageClient;
 
     public TaskRepositoryImpl(TaskMapper taskMapper) {
         this.taskMapper = taskMapper;

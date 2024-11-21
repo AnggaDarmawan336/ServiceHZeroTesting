@@ -1,0 +1,75 @@
+package com.hand.app.service.impl;
+
+import com.hand.app.service.MessageService;
+import com.hand.domain.entity.Message;
+import org.hzero.boot.message.MessageClient;
+import org.hzero.boot.message.entity.Receiver;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.*;
+
+@Service
+public class MessageServiceImpl implements MessageService {
+
+    private final String TEMPLATE_CODE = "TEST-47839";
+    private final String SERVER_CODE = "TEST-47839";
+    private final String SENDER_NAME = "angga.darmawan@hand-global.com";
+
+    @Autowired
+    MessageClient messageClient;
+
+
+    @Override
+    public String sendStationMessage(Message message) {
+        try {
+            Receiver receiver = new Receiver();
+
+            receiver.setUserId(message.getReciverId());
+            receiver.setTargetUserTenantId(message.getOrganizationId());
+
+            List<String> messages = message.getMessage();
+            List<String> finalMessages = processMessages(messages);
+
+            Map<String, String> params = new HashMap<>();
+            params.put("message1", finalMessages.get(0));
+            params.put("message2", finalMessages.get(1));
+            params.put("senderName", SENDER_NAME);
+
+            List<Receiver> receivers = new ArrayList<>();
+            receivers.add(receiver);
+
+            Message result = messageClient.sendWebMessage(
+                    message.getOrganizationId(),
+                    SERVER_CODE,
+                    TEMPLATE_CODE,
+                    "EN_US",
+                    receivers,
+                    params
+        };
+
+        return null;
+    }
+
+    private List<String> processMessages(List<String> messages) {
+        List<String> defaultMessages = Arrays.asList(
+                "Welcome to HZERO platform",
+                "Thank you for using our service"
+        );
+
+        if (messages == null || messages.isEmpty()) {
+            return defaultMessages;
+        }
+
+        List<String> result = new ArrayList<>();
+        result.add(messages.get(0));
+
+        if (messages.size() > 1 && messages.get(1) != null) {
+            result.add(messages.get(1));
+        } else {
+            result.add("default");
+        }
+
+        return result;
+    }
+}
