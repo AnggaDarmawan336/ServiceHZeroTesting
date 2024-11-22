@@ -12,5 +12,4 @@ public interface UserRepository extends BaseRepository<User> {
     Page<User> pageUser(User user, PageRequest pageRequest);
     List<User> selectByUserId(Long userId);
     User selectDetailByUserNumber(String userNumber);
-    User findByUserAccount(Long userAccount);
 }

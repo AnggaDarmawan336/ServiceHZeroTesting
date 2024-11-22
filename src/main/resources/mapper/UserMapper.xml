@@ -10,4 +10,9 @@
     <select id="selectUser" resultMap="userMap">
         SELECT * FROM todo_user
     </select>
+
+    <select id="selectByUserAccount" resultMap="userMap">
+        select ts.id, ts.employee_name, ts.employee_number, ts.email from todo_user as ts
+        where ts.user_account = #{userAccount}
+    </select>
 </mapper>

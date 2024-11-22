@@ -33,6 +33,11 @@
             <artifactId>hzero-scheduler-saas</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.hzero.boot</groupId>
+            <artifactId>hzero-boot-file</artifactId>
+        </dependency>
+
         <!-- 依赖服务列表 -->
 
         <!-- 依赖组件列表 -->

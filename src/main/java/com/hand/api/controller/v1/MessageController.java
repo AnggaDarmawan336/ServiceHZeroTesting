@@ -38,7 +38,8 @@ public class MessageController {
     @ApiOperation(value = "Messenger Sent")
     @PostMapping("/email")
     public ResponseEntity<?> sendNotifications(
-            @PathVariable("organizationId") Long tenantId,
+            @PathVariable("organizationId" +
+                    "") Long tenantId,
             @RequestParam(name = "receiver") Long receiver,
             @RequestBody List<MessageRequest> messageRequests
     ){

@@ -19,7 +19,7 @@ import java.util.Map;
 public class DemoJob implements IJobHandler {
 
     @Autowired
-    UserRepository2 userRepository2;
+    UserRepository userRepository;
 
     private static final Logger log = LoggerFactory.getLogger(DemoJob.class);
     private final MessageService messageService;
@@ -41,7 +41,7 @@ public class DemoJob implements IJobHandler {
     public ReturnT execute(Map<String, String> map, SchedulerTool tool) {
         log.info("This is log service from: 47839 id: {}", map.get("userId"));
 
-        User user = userRepository2.findByUserAccount(Long.valueOf(map.get("userId")));
+        User user = userRepository.findByUserAccount(Long.valueOf(map.get("userId")));
         log.info("this is user account in long {}", map.get("userId"));
         Message message1 = messageService.sendFeishuMessage(0, "hello", user.getEmail(),
                 user.getEmployeeNumber(),

@@ -45,4 +45,9 @@ public class UserRepositoryImpl extends BaseRepositoryImpl<User> implements User
         List<User> users = userMapper.selectUser(params);
         return CollectionUtils.isNotEmpty(users) ? users.get(0) : null;
     }
+
+    @Override
+    public User findByUserAccount(Long userAccount) {
+        return userMapper.selectByUserAccount(userAccount);
+    }
 }

@@ -1,9 +1,8 @@
-package com.hand.infra.util;
+package com.hand.app.job;
 
 import com.hand.app.service.impl.MessageService;
 import com.hand.domain.entity.User;
 import com.hand.domain.repository.UserRepository;
-import com.hand.domain.repository.UserRepository2;
 import org.hzero.boot.message.entity.Message;
 import org.hzero.boot.scheduler.infra.annotation.JobHandler;
 import org.hzero.boot.scheduler.infra.enums.ReturnT;
@@ -19,7 +18,7 @@ import java.util.Map;
 public class DemoJob implements IJobHandler {
 
     @Autowired
-    UserRepository2 userRepository2;
+    UserRepository userRepository;
 
     private static final Logger log = LoggerFactory.getLogger(DemoJob.class);
     private final MessageService messageService;
@@ -41,7 +40,7 @@ public class DemoJob implements IJobHandler {
     public ReturnT execute(Map<String, String> map, SchedulerTool tool) {
         log.info("This is log service from: 47839 id: {}", map.get("userId"));
 
-        User user = userRepository2.findByUserAccount(Long.valueOf(map.get("userId")));
+        User user = userRepository.findByUserAccount(Long.valueOf(map.get("userId")));
         log.info("this is user account in long {}", map.get("userId"));
         Message message1 = messageService.sendFeishuMessage(0, "hello", user.getEmail(),
                 user.getEmployeeNumber(),
