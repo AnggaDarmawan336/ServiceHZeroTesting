@@ -2,6 +2,7 @@ package com.hand.api.controller.DTO;
 
 import java.util.Date;
 
+
 public class MessageRequest {
 
     private String userName;
