@@ -1,0 +1,9 @@
+package com.hand.app.service;
+
+import org.hzero.boot.workflow.dto.RunInstance;
+import org.hzero.boot.workflow.dto.StandardResponseDTO;
+
+public interface WorkFlowCLient {
+
+    RunInstance startWorkFlowClient(Long organizationId, )
+}

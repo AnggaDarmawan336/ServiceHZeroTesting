@@ -29,20 +29,4 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/v1/example")
 public class ExampleController extends BaseController {
 
-    @Autowired
-    private ExampleService exampleService;
-    @Autowired
-    private ExampleRepository exampleRepository;
-
-    @ApiOperation(value = "根据ID获取")
-    @Permission(level = ResourceLevel.SITE, permissionLogin = true)
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "ID", paramType = "path")
-    })
-    @GetMapping("/{id}")
-    public ResponseEntity<Example> hello(@PathVariable Long id) {
-        return Results.success(exampleRepository.selectByPrimaryKey(id));
-    }
-
-
 }

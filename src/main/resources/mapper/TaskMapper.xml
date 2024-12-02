@@ -12,4 +12,17 @@
     <select id="selectTask" resultMap="taskMap">
         SELECT * FROM todo_task
     </select>
+
+    <select id="selectList" resultType="com.hand.api.controller.DTO.TaskDTO">
+        select * from todo_task
+        <where>
+            <if test="empIdList != null and empIdList.size() > 0">
+                and employee_id in
+                <foreach collection="empIdList" open="(" close=")" item="empId" separator=",">
+                    #{empId}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
 </mapper>

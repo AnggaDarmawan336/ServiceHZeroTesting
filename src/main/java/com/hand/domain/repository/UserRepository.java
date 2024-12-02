@@ -1,5 +1,6 @@
 package com.hand.domain.repository;
 
+import com.hand.api.controller.DTO.UserDTO;
 import com.hand.domain.entity.Task;
 import com.hand.domain.entity.User;
 import io.choerodon.core.domain.Page;
@@ -13,4 +14,6 @@ public interface UserRepository extends BaseRepository<User> {
     List<User> selectByUserId(Long userId);
     User selectDetailByUserNumber(String userNumber);
     User findByUserAccount(Long userAccount);
+
+    List<UserDTO> selectList(UserDTO userDTO);
 }

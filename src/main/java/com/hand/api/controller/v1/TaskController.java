@@ -43,6 +43,7 @@ public class TaskController extends BaseController {
     @Permission(level = ResourceLevel.ORGANIZATION)
     @ApiOperation(value = "创建task")
     @PostMapping
+    @SuppressWarnings("unused")
     public ResponseEntity<Task> create(@PathVariable("organizationId") Long tenantId,
                                         @RequestBody Task task
     ){

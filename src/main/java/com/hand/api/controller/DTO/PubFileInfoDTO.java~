@@ -1,0 +1,34 @@
+package com.hand.api.controller.DTO;
+
+
+import io.swagger.annotations.ApiModelProperty;
+import org.springframework.web.multipart.MultipartFile;
+
+public class PubFileInfoDTO {
+
+    @ApiModelProperty(value = "Bucket Name")
+    private String bucketName;
+
+    @ApiModelProperty(value = "File URL")
+    private String fileUrl;
+
+    @ApiModelProperty(value = "Attachment UUID")
+    private String attachmentUuid;
+
+    @ApiModelProperty(value = "File Directory")
+    private String fileDirectory;
+
+    @ApiModelProperty(value = "File Name")
+    private String fileName;
+
+    @ApiModelProperty(value = "File Type")
+    private String fileType;
+
+    @ApiModelProperty(value = "Storage Code")
+    private String storageCode;
+
+    @ApiModelProperty(value = "File Source")
+    private MultipartFile multipartFile;
+
+    
+}

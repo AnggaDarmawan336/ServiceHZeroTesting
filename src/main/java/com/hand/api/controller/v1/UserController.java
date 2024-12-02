@@ -1,5 +1,6 @@
 package com.hand.api.controller.v1;
 
+import com.hand.api.controller.DTO.UserDTO;
 import com.hand.app.service.UserService;
 import com.hand.config.SwaggerTags;
 import com.hand.domain.entity.Task;
@@ -11,11 +12,18 @@ import io.choerodon.mybatis.pagehelper.domain.PageRequest;
 import io.choerodon.swagger.annotation.Permission;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.hzero.boot.platform.lov.annotation.ProcessLovValue;
+import org.hzero.core.base.BaseConstants;
 import org.hzero.core.base.BaseController;
 import org.hzero.core.util.Results;
+import org.hzero.export.annotation.ExcelExport;
+import org.hzero.export.vo.ExportParam;
 import org.hzero.mybatis.helper.SecurityTokenHelper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Api(tags = SwaggerTags.USER)
 @RestController("userController.v1")
@@ -23,6 +31,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController extends BaseController {
     private final UserService userService;
     private final UserRepository userRepository;
+
     public UserController(UserService userService, UserRepository userRepository) {
         this.userService = userService;
         this.userRepository = userRepository;
@@ -54,5 +63,18 @@ public class UserController extends BaseController {
         // 删除用户
         userService.delete(user.getId());
         return Results.success();
+    }
+
+    @ApiOperation(value = "export")
+    @Permission(level = ResourceLevel.ORGANIZATION)
+    @GetMapping("/export/{organizationId}")
+    @ExcelExport(value = UserDTO.class)
+    @ProcessLovValue(targetField = BaseConstants.FIELD_BODY)
+    public ResponseEntity<List<UserDTO>> export(
+            UserDTO userDTO,
+            ExportParam exportParam,
+            HttpServletResponse response,
+            @PathVariable("organizationId") String organizationId) {
+        return Results.success(userService.exportData(userDTO));
     }
 }

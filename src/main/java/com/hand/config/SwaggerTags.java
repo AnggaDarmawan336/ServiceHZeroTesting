@@ -17,6 +17,7 @@ public class SwaggerTags {
     public static final String TASK = "Task";
     public static final String MESSAGE = "Message";
     public static final String FILE = "File";
+    public static final String WORKFLOW = "Workflow";
 
     @Autowired
     public SwaggerTags(Docket docket) {
@@ -25,7 +26,8 @@ public class SwaggerTags {
                 new Tag(USER, "USER"),
                 new Tag(TASK, "TASK"),
                 new Tag(MESSAGE, "MESSAGE"),
-                new Tag(FILE, "FILE")
+                new Tag(FILE, "FILE"),
+                new Tag(WORKFLOW, "WORKFLOW")
         );
     }
 }

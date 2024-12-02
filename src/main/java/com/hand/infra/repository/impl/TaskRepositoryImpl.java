@@ -1,5 +1,6 @@
 package com.hand.infra.repository.impl;
 
+import com.hand.api.controller.DTO.TaskDTO;
 import com.hand.domain.entity.Task;
 import com.hand.domain.repository.TaskRepository;
 import com.hand.infra.mapper.TaskMapper;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.apache.commons.collections4.CollectionUtils;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -50,4 +52,11 @@ public class TaskRepositoryImpl extends BaseRepositoryImpl<Task> implements Task
         List<Task> tasks = taskMapper.selectTask(params);
         return CollectionUtils.isNotEmpty(tasks) ? tasks.get(0) : null;
     }
+
+    @Override
+    public List<TaskDTO> selectList(TaskDTO taskDTO) {
+        return taskMapper.selectList(taskDTO);
+    }
+
+
 }

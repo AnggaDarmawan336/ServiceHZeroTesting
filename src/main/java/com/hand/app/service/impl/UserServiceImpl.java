@@ -1,5 +1,8 @@
 package com.hand.app.service.impl;
 
+import com.hand.api.controller.DTO.TaskDTO;
+import com.hand.api.controller.DTO.UserDTO;
+import com.hand.app.service.TaskService;
 import com.hand.app.service.UserService;
 import com.hand.domain.entity.Task;
 import com.hand.domain.entity.User;
@@ -12,7 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import static net.sf.jsqlparser.util.validation.metadata.NamedObject.user;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,6 +29,8 @@ public class UserServiceImpl implements UserService {
     private TaskRepository taskRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    TaskService taskService;
 
     public UserServiceImpl(TaskRepository taskRepository, UserRepository userRepository) {
         this.taskRepository = taskRepository;
@@ -47,5 +58,17 @@ public class UserServiceImpl implements UserService {
         if (CollectionUtils.isNotEmpty(tasks)) {
             taskRepository.batchDelete(tasks);
         }
+    }
+
+    @Override
+    public List<UserDTO> exportData(UserDTO userDTO) {
+        List<UserDTO> userList = userRepository.selectList(userDTO);
+        List<Long> userIdlist = new ArrayList<>();
+        userList.forEach(user -> userIdlist.add(user.getId()));
+        Map<Long, List<TaskDTO>> taskMap = taskService.selectList(new TaskDTO().setEmpIdList(userIdlist))
+                .stream()
+                .collect(Collectors.groupingBy(TaskDTO::getEmployeeId));
+        userList.forEach(user -> user.setTaskList(taskMap.get(user.getId())));
+        return userList;
     }
 }

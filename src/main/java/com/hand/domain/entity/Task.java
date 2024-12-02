@@ -6,7 +6,10 @@ import io.choerodon.mybatis.annotation.VersionAudit;
 import io.choerodon.mybatis.domain.AuditDomain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
+import org.hzero.export.annotation.ExcelColumn;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,6 +19,8 @@ import java.util.UUID;
 @ModifyAudit
 @VersionAudit
 @Table(name = "todo_task")
+@Getter
+@Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Task extends AuditDomain {
     public static final String FIELD_ID = "id";
@@ -27,13 +32,17 @@ public class Task extends AuditDomain {
     private Long id;
     @NotNull(message = "error.employeeId.null")
     @ApiModelProperty("用户ID")
+    @ExcelColumn(en = "employeeId")
     private Long employeeId;
     @ApiModelProperty("任务状态")
+    @ExcelColumn(en = "state")
     private String state;
     @ApiModelProperty("任务编号")
+    @ExcelColumn(en = "taskNumber")
     private String taskNumber;
     @Length(max = 240)
     @ApiModelProperty("任务描述")
+    @ExcelColumn(en = "taskDescription")
     private String taskDescription;
     @NotNull
     @ApiModelProperty("租户ID")
@@ -44,7 +53,15 @@ public class Task extends AuditDomain {
     @Transient
     @ApiModelProperty("员工姓名")
     private String employeeName;
+    private String taskType;
 
+    public String getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(String taskType) {
+        this.taskType = taskType;
+    }
 
     public @NotNull(message = "error.employeeId.null") Long getEmployeeId() {
         return employeeId;
@@ -57,6 +74,7 @@ public class Task extends AuditDomain {
     public @NotNull Long getTenantId() {
         return tenantId;
     }
+
 
     public void setTenantId(@NotNull Long tenantId) {
         this.tenantId = tenantId;

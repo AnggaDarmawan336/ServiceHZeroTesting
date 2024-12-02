@@ -44,11 +44,6 @@ public class TaskRepositoryImpl extends BaseRepositoryImpl<Task> implements Task
     }
 
     @Override
-    public List<Map<String, Object>> selectByEmployeeId2(long employeeId) {
-        return List.of();
-    }
-
-    @Override
     public Task selectDetailByTaskNumber(String taskNumber) {
         Task params = new Task();
         params.setTaskNumber(taskNumber);

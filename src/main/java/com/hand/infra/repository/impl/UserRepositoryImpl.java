@@ -1,5 +1,6 @@
 package com.hand.infra.repository.impl;
 
+import com.hand.api.controller.DTO.UserDTO;
 import com.hand.domain.entity.Task;
 import com.hand.domain.entity.User;
 import com.hand.domain.repository.UserRepository;
@@ -14,6 +15,7 @@ import org.hzero.mybatis.common.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -50,4 +52,14 @@ public class UserRepositoryImpl extends BaseRepositoryImpl<User> implements User
     public User findByUserAccount(Long userAccount) {
         return userMapper.selectByUserAccount(userAccount);
     }
+
+    @Override
+    public List<UserDTO> selectList(UserDTO userDTO) {
+        return userMapper.selectList(userDTO);
+    }
+//
+//    @Override
+//    public List<UserDTO> selectAll(UserDTO userDTO) {
+//        return userMapper.selectList(userDTO);
+//    }
 }

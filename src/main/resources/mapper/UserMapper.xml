@@ -3,13 +3,19 @@
     <resultMap id="userMap" type="com.hand.domain.entity.User">
         <id column="ID" jdbcType="INTEGER" property="id"/>
         <result column="EMPLOYEE_NAME" jdbcType="VARCHAR" property="employeeName"/>
-        <result column="EMPLOYEE_NUMBER" jdbcType="VARCHAR" property="employeeName"/>
+        <result column="EMPLOYEE_NUMBER" jdbcType="VARCHAR" property="employeeNumber"/>
         <result column="EMAIL" jdbcType="VARCHAR" property="email"/>
     </resultMap>
 
     <select id="selectUser" resultMap="userMap">
         SELECT * FROM todo_user
     </select>
+
+    <select id="selectList" resultType="com.hand.api.controller.DTO.UserDTO">
+        select * from todo_user
+    </select>
+
+
 
     <select id="selectByUserAccount" resultMap="userMap">
         select ts.id, ts.employee_name, ts.employee_number, ts.email from todo_user as ts
